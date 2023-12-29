@@ -1,0 +1,59 @@
+<!--Temiloluwa Olufore 1970625-->
+<%- include('../partials/head')-%>
+
+<html>
+  <head>
+    <title>Resident View</title>
+  </head>
+  <body>
+    <%- include('../partials/header')-%>
+    <h3 class="h3tablez">VIEW RESIDENTS</h3>
+    <div class="tableviewing">
+      <main>
+        <div class="table-container">
+          <div class="buttonnav">
+            <a
+              href="/resident/add"
+              class="btn btn-primary"
+              >Add Residents</a
+            >
+            <a
+              href="/resident/update"
+              class="btn btn-primary"
+              >Update Residents</a
+            >
+            <a
+              href="/resident/delete"
+              class="btn btn-primary"
+              >Delete Residents</a
+            >
+          </div>
+          <div class="table-responsive-md">
+            <table class="get-started-table">
+              <thead>
+                <tr>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Age</th>
+                  <th>Room Number</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% const sortedResidentdata = residentdata.sort((a, b) =>
+                a.lastname - b.lastname); sortedResidentdata.forEach(resident =>
+                { %>
+                <tr>
+                  <td><%= resident.firstname %></td>
+                  <td><%= resident.lastname %></td>
+                  <td><%= resident.age %></td>
+                  <td><%= resident.room %></td>
+                </tr>
+                <% }); %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,72 @@
+<!-- Temiloluwa Olufore 1970625 -->
+<%- include('../partials/head')-%>
+
+<html>
+  <head>
+    <title>Delete Floor</title>
+  </head>
+  <body>
+    <%- include('../partials/header')-%>
+    <main>
+      <h3 class="h3tablez">DELETE FLOOR</h3>
+      <div class="page-view">
+        <form
+          id="deleteFloor"
+          class="singleint"
+          method="POST"
+          action="/api/floor/<%= parseInt(level) %>?_method=DELETE"
+          style="max-width: 37% !important">
+          <input
+            type="hidden"
+            name="_method"
+            value="DELETE" />
+          <div class="mb-3">
+            <label
+              for="level"
+              class="form-label"
+              >Select Floor Level to Delete:</label
+            >
+            <select
+              class="form-select"
+              id="level"
+              name="level"
+              required>
+              <option
+                value=""
+                disabled
+                selected></option>
+              <% const sortedFloordata = floordata.sort((a, b) => a.level -
+              b.level); %> <% sortedFloordata.forEach(floor => { %>
+              <option value="<%= parseInt(floor.level) %>">
+                <p>Level <%= floor.level %>: <%= floor.name %></p>
+              </option>
+              <% }); %>
+            </select>
+          </div>
+          <div class="button-container">
+            <button
+              type="submit"
+              class="btn btn-primary">
+              DELETE FLOOR
+            </button>
+            <a
+              href="/floor/view"
+              class="btn btn-primary"
+              >View Floors</a
+            >
+            <a
+              href="/floor/add"
+              class="btn btn-primary"
+              >Add Floors</a
+            >
+            <a
+              href="/floor/update"
+              class="btn btn-primary"
+              >Update Floors</a
+            >
+          </div>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>

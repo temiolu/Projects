@@ -1,0 +1,88 @@
+<!-- Temiloluwa Olufore 1970625 -->
+<%- include('../partials/head')-%>
+
+<html>
+  <head>
+    <title>Update Room</title>
+  </head>
+  <body>
+    <%- include('../partials/header')-%>
+    <main>
+      <h3 class="h3tablez">UPDATE ROOM CAPACITY</h3>
+      <div class="page-view">
+        <form
+          id="updateRoom"
+          class="add-form"
+          method="POST"
+          action="/api/room/<%= parseInt(roomnumber) %>?_method=PUT">
+          <input
+            type="hidden"
+            name="_method"
+            value="PUT" />
+          <div class="mb-3">
+            <label
+              for="roomnumber"
+              class="form-label"
+              >Room Number:</label
+            >
+            <select
+              class="form-select"
+              id="roomnumber"
+              name="roomnumber"
+              required>
+              <option
+                value=""
+                disabled
+                selected></option>
+              <% const sortedRoomdata = roomdata.sort((a, b) => a.number -
+              b.number); %> <% sortedRoomdata.forEach(room => { %>
+              <option value="<%= (room.number) %>">
+                Room <%= room.number %>
+              </option>
+              <% }); %>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label
+              for="capacity"
+              class="form-label"
+              >New Capacity:</label
+            >
+            <input
+              type="number"
+              id="capacity"
+              class="form-control"
+              name="capacity"
+              required />
+          </div>
+          <div class="button-container">
+            <button
+              type="submit"
+              class="btn btn-primary">
+              UPDATE ROOM
+            </button>
+
+            <a
+              href="/room/view"
+              class="btn btn-primary additional-links"
+              >View Rooms</a
+            >
+
+            <a
+              href="/room/add"
+              class="btn btn-primary additional-links"
+              >Add Rooms</a
+            >
+
+            <a
+              href="/room/delete"
+              class="btn btn-primary additional-links"
+              >Delete Rooms</a
+            >
+          </div>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>

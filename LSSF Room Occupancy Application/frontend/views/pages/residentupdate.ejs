@@ -1,0 +1,103 @@
+<!-- Temiloluwa Olufore 1970625 -->
+<%- include('../partials/head')-%>
+
+<html>
+  <head>
+    <title>Update Resident</title>
+  </head>
+  <body>
+    <%- include('../partials/header')-%>
+    <main>
+      <h3 class="h3tablez">UPDATE RESIDENT ROOM</h3>
+      <div class="page-view">
+        <form
+          id="updateResident"
+          class="add-form"
+          method="POST"
+          action="/api/resident/<%= parseInt(residentID) %>?_method=PUT">
+          <input
+            type="hidden"
+            name="_method"
+            value="PUT" />
+          <div class="mb-3">
+            <label
+              for="residentID"
+              class="form-label"
+              >Select Resident to Update:</label
+            >
+            <select
+              class="form-select"
+              id="residentID"
+              name="residentID"
+              required>
+              <option
+                value=""
+                disabled
+                selected></option>
+              <% const sortedResidentdata = residentdata.sort((a, b) =>
+              a.residentID - b.residentID); %> <%
+              sortedResidentdata.forEach(resident => { %>
+              <option value="<%= (resident.residentID) %>">
+                <%= resident.firstname %> <%= resident.lastname %> - Current
+                Room: <%= resident.room %>
+              </option>
+              <% }); %>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label
+              for="room"
+              class="form-label"
+              >New Room Assingment:</label
+            >
+            <select
+              class="form-select"
+              id="room"
+              name="room"
+              required>
+              <option
+                value=""
+                disabled
+                selected></option>
+              <% const sortedRoomdata = roomdata.sort((a, b) => a.number -
+              b.number); %> <% sortedRoomdata.forEach(room => { %> <% if
+              (room.capacity > 0) { %>
+              <option value="<%= parseInt(room.number) %>">
+                <p>
+                  Room <%= room.number %> - (Capacity: <%= room.capacity %>)
+                </p>
+              </option>
+              <% } %> <% }); %>
+            </select>
+          </div>
+
+          <div class="button-container">
+            <button
+              type="submit"
+              class="btn btn-primary">
+              UPDATE RESIDENT
+            </button>
+
+            <a
+              href="/resident/view"
+              class="btn btn-primary additional-links"
+              >View Residents</a
+            >
+
+            <a
+              href="/resident/add"
+              class="btn btn-primary additional-links"
+              >Add Residents</a
+            >
+
+            <a
+              href="/resident/delete"
+              class="btn btn-primary additional-links"
+              >Delete Residents</a
+            >
+          </div>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>

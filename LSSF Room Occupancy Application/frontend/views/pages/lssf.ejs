@@ -1,0 +1,84 @@
+<!-- Temiloluwa Olufore 1970625 -->
+<%- include('../partials/head')-%>
+
+<html>
+  <head>
+    <title>LSSF</title>
+  </head>
+
+  <body>
+    <%- include('../partials/header')-%>
+    <main>
+      <div class="homepage">
+        <div class="left-side">
+          <div class="con">
+            <figure>
+              <img
+                src="/img/rh.jpg"
+                alt="Exterior view of the Retirement Home"
+                class="rh" />
+              <figcaption>Facility</figcaption>
+            </figure>
+
+            <figure>
+              <img
+                src="/img/tx.jpg"
+                alt="Texas Logo"
+                class="rh" />
+              <figcaption>Heart of Texas</figcaption>
+            </figure>
+          </div>
+        </div>
+        <div class="right-side">
+          <div class="con">
+            <h3>Description</h3>
+            <p class="desc">
+              This is a CRUD application designed to manage floors, rooms, and
+              residents within the Lone Star Senior Facility. The application
+              provides the following functionalities:
+            </p>
+
+            <ul>
+              <li>
+                <strong>Create:</strong> Add new floors, rooms, and residents to
+                the facility.
+              </li>
+              <li>
+                <strong>Read:</strong> View information about existing floors,
+                rooms, and residents.
+              </li>
+              <li>
+                <strong>Update:</strong> Updating floors names, updating room
+                capacities, and room reassingments for residents as needed.
+              </li>
+              <li>
+                <strong>Delete:</strong> Deleting floors, rooms and residents
+                from the facility
+              </li>
+            </ul>
+            <br />
+            <h3>Get Started</h3>
+            <table class="get-started-table">
+              <tr>
+                <th>Action</th>
+                <th>Link</th>
+              </tr>
+              <tr>
+                <td>MANAGE: Floor</td>
+                <td><a href="/floor">FLOOR</a></td>
+              </tr>
+              <tr>
+                <td>MANAGE: Room</td>
+                <td><a href="/room">ROOM</a></td>
+              </tr>
+              <tr>
+                <td>MANAGE: Resident</td>
+                <td><a href="/resident">RESIDENT</a></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

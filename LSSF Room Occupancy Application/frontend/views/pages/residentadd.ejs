@@ -1,0 +1,107 @@
+<!-- Temiloluwa Olufore 1970625 -->
+<%- include('../partials/head')-%>
+
+<html>
+  <head>
+    <title>Add Resident</title>
+  </head>
+  <body>
+    <%- include('../partials/header')-%>
+    <main>
+      <h3 class="h3tablez">ADD RESIDENTS</h3>
+      <div class="page-view">
+        <form
+          action="/resident/add"
+          method="post"
+          class="add-form"
+          onsubmit="generateResidentID()">
+          <div class="row">
+            <div class="col">
+              <div class="mb-3">
+                <input
+                  type="text"
+                  id="firstname"
+                  name="firstname"
+                  class="form-control"
+                  required />
+                <label class="form-label" for="firstname">First name</label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-outline">
+                <input
+                  type="text"
+                  id="lastname"
+                  name="lastname"
+                  class="form-control"
+                  required />
+                <label class="form-label" for="lastname">Last name</label>
+              </div>
+            </div>
+          </div>
+          <div class="row" style="max-height: 60px !important">
+            <div class="col">
+              <div class="mb-3">
+                <input
+                  type="number"
+                  id="age"
+                  name="age"
+                  class="form-control"
+                  required />
+                <label class="form-label" for="age">Age</label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="mb-3">
+                <select class="form-select" id="room" name="room" required>
+                  <option value="" disabled selected></option>
+                  <% const sortedRoomdata = roomdata.sort((a, b) => a.number -
+                  b.number); %> <% sortedRoomdata.forEach(room => { %> <% if
+                  (room.capacity > 0) { %>
+                  <option value="<%= parseInt(room.number) %>">
+                    <p>
+                      Room <%= room.number %> - (Capacity: <%= room.capacity %>)
+                    </p>
+                  </option>
+                  <% } %> <% }); %>
+                </select>
+                <label class="form-label" for="room">Room Number</label>
+              </div>
+            </div>
+          </div>
+          <input
+            type="hidden"
+            id="residentID"
+            name="residentID"
+            readonly
+            class="form-control"
+            style="max-width: 255px !important"
+            required />
+          <label for="residentID" class="form-label"></label>
+          <div class="button-container">
+            <button type="submit" class="btn btn-primary">ADD RESIDENT</button>
+            <a href="/resident/view" class="btn btn-primary">View Residents</a>
+            <a href="/resident/update" class="btn btn-primary"
+              >Update Residents</a
+            >
+            <a href="/resident/delete" class="btn btn-primary"
+              >Delete Residents</a
+            >
+          </div>
+        </form>
+      </div>
+    </main>
+    <script>
+      const generatedResidentIDs = [];
+      function generateResidentID() {
+        const residentID = Math.floor(Math.random() * 99) + 12001;
+        while (generatedResidentIDs.includes(residentID)) {
+          residentID = Math.floor(Math.random() * 99) + 12001;
+        }
+        generatedResidentIDs.push(residentID);
+        document.getElementById("residentID").value = residentID;
+        console.log(generatedResidentIDs);
+      }
+    </script>
+  </body>
+</html>
