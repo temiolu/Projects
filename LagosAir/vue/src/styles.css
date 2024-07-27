@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap');
 
 #app {
-  font-family: "Julius Sans One", sans-serif;
+  
 }
 
 @media (hover: hover) {
@@ -26,5 +26,15 @@
     margin-left: auto;
     margin-right: auto;
   }
+
+  .feature {
+    background-color: yellowgreen;
+    color: greenyellow;
+  }
+
+  .container1 {
+    background-color: aqua;
+  }
+  
   
 }

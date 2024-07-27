@@ -1,0 +1,31 @@
+<template>
+    <div>
+      <!-- Your existing navbar goes here -->
+      <div class="slideshow">
+        <!-- Slideshow content goes here -->
+        Slideshow
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-body" v-for="flight in flightdata" :key="flight">
+                <h5 class="card-title">{{ flight.ident }}</h5>
+                <p class="card-text">Lagos <font-awesome-icon icon="plane-departure" style="margin-right: 5px;" /> {{ flight.destination.city }}</p>
+                <p class="card-text" style="margin-right: 2px;">Departure Time: {{ getLocalTime(flight.scheduled_out) }}</p>
+                <p class="card-text">{{ flight.status }}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Arrival 1</h5>
+                <p class="card-text">Flight details for arrival 1</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>

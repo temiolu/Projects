@@ -5,12 +5,12 @@ import os
 import requests
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins="http://localhost:5173")
 load_dotenv()
 
 @app.route('/', methods=['GET'])
 def getAirport():
-    url = 'https://aeroapi.flightaware.com/aeroapi/airports/KIAH'
+    url = 'https://aeroapi.flightaware.com/aeroapi/airports/DNMM'
     headers = {
         'x-apikey': os.getenv('API_KEY'),
         'Content-Type': 'application/json'
@@ -19,12 +19,34 @@ def getAirport():
     airport_data = response.json()
     return airport_data
 
-@app.route('/', methods=['GET'])
-def getFlights():
-    url = 'https://aeroapi.flightaware.com/aeroapi/airports/KIAH'
+@app.route('/departures', methods=['GET'])
+def getDepartures():
+    url = 'https://aeroapi.flightaware.com/aeroapi/airports/DNMM/flights/departures'
     headers = {
         'x-apikey': os.getenv('API_KEY'),
         'Content-Type': 'application/json'
+    }
+    response = requests.get(url, headers=headers)
+    airport_data = response.json()
+    return airport_data
+
+@app.route('/arrivals', methods=['GET'])
+def getArrivals():
+    url = 'https://aeroapi.flightaware.com/aeroapi/airports/DNMM/flights/arrivals'
+    headers = {
+        'x-apikey': os.getenv('API_KEY'),
+        'Content-Type': 'application/json'
+    }
+    response = requests.get(url, headers=headers)
+    airport_data = response.json()
+    return airport_data
+
+@app.route('/airline/<id>', methods=['GET'])
+def getAirline(id):
+    url = f'https://aeroapi.flightaware.com/aeroapi/operators/{id}'
+    headers = {
+    'x-apikey': os.getenv('API_KEY'),
+    'Content-Type': 'application/json'
     }
     response = requests.get(url, headers=headers)
     airport_data = response.json()

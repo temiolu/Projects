@@ -16,7 +16,10 @@
             <RouterLink to="/pois">POIs</RouterLink>
           </li>
           <li class="nav-item">
-          Time in Lagos: {{ LagosTime }}
+            {{ LagosDate }}
+          </li>
+          <li class="nav-item">
+          <!-- Time in Lagos: {{ LagosTime }} -->
           </li>
         </ul>
         <form class="d-flex input-group w-auto">
@@ -24,7 +27,7 @@
             type="text"
             class="form-control"
             placeholder="Search Flights"
-            v-model="input"
+            v-model="input.value"
           />
           <button
             data-mdb-ripple-init
@@ -38,9 +41,6 @@
       </div>
     </div>
   </nav>
-  <div class="wrapper">
-    <HelloWorld msg="You did it!" />
-  </div>
   </header>
   <main class="mainpage">
     <RouterView />
@@ -49,15 +49,30 @@
 
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-import { ref, onMounted } from 'vue';
+import { ref, reactive, onMounted } from 'vue';
 
 const LagosTime = ref('');
+const LagosDate = ref('');
+const input = reactive('');
+
+// const updateTime = () => {
+//   const date = new Date();
+//   const timeString = date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true,  timeZone: 'Africa/Lagos' });
+//   LagosTime.value = timeString
+// };
 
 const updateTime = () => {
-  const date = new Date();
-  const timeString = date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true,  timeZone: 'Africa/Lagos' });
-  LagosTime.value = timeString
+const date = new Date();
+const options = { 
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit', 
+  timeZone: 'Africa/Lagos' 
+  };
+const timeString = date.toLocaleTimeString('en-US', options);
+const dateString = date.toLocaleDateString('en-US', options);
+LagosTime.value = `${timeString}`;
+LagosDate.value = `${dateString}`;
 };
 
 onMounted(() => {
