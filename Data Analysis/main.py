@@ -1,14 +1,6 @@
 import pandas as pd
 import pyodbc
 
-conn_str = (
-    "Driver={SQL Server};"
-    "Server=projectsazure.database.windows.net;"
-    "Database=Projects;"
-    "UID=temez;"
-    "PWD=mbwsmN322;"
-)
-
 conn = pyodbc.connect(conn_str)
 cursor = conn.cursor()
 
