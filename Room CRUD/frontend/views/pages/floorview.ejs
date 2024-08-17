@@ -1,0 +1,51 @@
+<!--Temiloluwa Olufore 1970625-->
+<%- include('../partials/head')-%>
+
+<html>
+  <head>
+    <title>Floor View</title>
+  </head>
+  <body>
+    <%- include('../partials/header')-%>
+    <div class="tableviewing">
+      <main>
+        <div class="buttonnav">
+          <a
+            href="/floor/add"
+            class="btn btn-primary"
+            >Add Floor</a
+          >
+          <a
+            href="/floor/update"
+            class="btn btn-primary"
+            >Update Floor</a
+          >
+          <a
+            href="/floor/delete"
+            class="btn btn-primary"
+            >Delete Floor</a
+          >
+        </div>
+        <div class="table-responsive-md">
+          <table class="get-started-table">
+            <thead>
+              <tr>
+                <th>Floor Level</th>
+                <th>Floor Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% const sortedFloordata = floordata.sort((a, b) => a.level -
+              b.level); sortedFloordata.forEach(floor => { %>
+              <tr>
+                <td><%= floor.level %></td>
+                <td><%= floor.name %></td>
+              </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

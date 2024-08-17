@@ -1,0 +1,30 @@
+<!--Temiloluwa Olufore 1970625-->
+<%- include('../partials/head')-%>
+
+<html>
+  <head>
+    <title>Message</title>
+    <script>
+      setTimeout(function () {
+        if (document.referrer) {
+          window.location = document.referrer;
+        } else {
+          window.location = "/";
+        }
+      }, 2000);
+    </script>
+  </head>
+  <body>
+    <%- include('../partials/header')-%>
+    <h1 style="text-align: center; margin-top: 2rem; color: #ff002b">
+      MESSAGE
+    </h1>
+    <div class="mb-3">
+      <div
+        class="card"
+        style="height: 70px; margin-top: 2rem">
+        <p class="emsg"><%= JSON.stringify(jsondata.Message) %></p>
+      </div>
+    </div>
+  </body>
+</html>

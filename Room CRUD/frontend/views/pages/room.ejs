@@ -1,0 +1,97 @@
+<!-- Temiloluwa Olufore 1970625 -->
+<%- include('../partials/head')-%>
+
+<html>
+  <head>
+    <title>Room</title>
+  </head>
+
+  <body>
+    <%- include('../partials/header')-%>
+    <h3 class="h3tablez">MANAGE ROOMS</h3>
+    <main>
+      <div class="crudmain">
+        <div class="api_call">
+          <div
+            class="card"
+            style="width: 18rem">
+            <p class="carico">
+              <i
+                class="fa-regular fa-eye fa-7x"
+                style="color: #ff002b"></i>
+            </p>
+            <div class="card-body">
+              <h5 class="card-title">VIEW ROOMS</h5>
+              <p class="card-text">View all the rooms in the facility</p>
+              <a
+                href="/room/view"
+                class="btn btn-primary"
+                >VIEW</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="api_call">
+          <div
+            class="card"
+            style="width: 18rem">
+            <p class="carico">
+              <i
+                class="fa-solid fa-plus fa-7x"
+                style="color: #ff002b"></i>
+            </p>
+            <div class="card-body">
+              <h5 class="card-title">ADD ROOMS</h5>
+              <p class="card-text">Add rooms to the facility</p>
+              <a
+                href="/room/add"
+                class="btn btn-primary"
+                >ADD</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="api_call">
+          <div
+            class="card"
+            style="width: 18rem">
+            <p class="carico">
+              <i
+                class="fa-regular fa-pen-to-square fa-7x"
+                style="color: #ff002b"></i>
+            </p>
+            <div class="card-body">
+              <h5 class="card-title">UPDATE ROOMS</h5>
+              <p class="card-text">Update rooms in the facility</p>
+              <a
+                href="/room/update"
+                class="btn btn-primary"
+                >UPDATE</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="api_call">
+          <div
+            class="card"
+            style="width: 18rem">
+            <p class="carico">
+              <i
+                class="fa-solid fa-trash fa-7x"
+                style="color: #ff002b"></i>
+            </p>
+            <div class="card-body">
+              <h5 class="card-title">DELETE ROOMS</h5>
+              <p class="card-text">Delete rooms from the facility</p>
+              <a
+                href="/room/delete"
+                class="btn btn-primary"
+                >DELETE</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

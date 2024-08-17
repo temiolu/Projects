@@ -1,0 +1,74 @@
+<!-- Temiloluwa Olufore 1970625 -->
+<%- include('../partials/head')-%>
+
+<html>
+  <head>
+    <title>Delete Resident</title>
+  </head>
+  <body>
+    <%- include('../partials/header')-%>
+    <main>
+      <h3 class="h3tablez">DELETE RESIDENT</h3>
+      <div class="page-view">
+        <form
+          id="deleteResident"
+          class="singleint"
+          method="POST"
+          action="/api/resident/<%= parseInt(residentID) %>?_method=DELETE"
+          style="max-width: 45% !important">
+          <input
+            type="hidden"
+            name="_method"
+            value="DELETE" />
+          <div class="mb-3">
+            <label
+              for="residentID"
+              class="form-label"
+              >Select Resident to Delete:</label
+            >
+            <select
+              class="form-select"
+              id="residentID"
+              name="residentID"
+              required>
+              <option
+                value=""
+                disabled
+                selected></option>
+              <% const sortedResidentdata = residentdata.sort((a, b) =>
+              a.residentID - b.residentID); %> <%
+              sortedResidentdata.forEach(resident => { %>
+              <option value="<%= (resident.residentID) %>">
+                <%= resident.firstname %> <%= resident.lastname %> - Current
+                Room: <%= resident.room %>
+              </option>
+              <% }); %>
+            </select>
+          </div>
+          <div class="button-container">
+            <button
+              type="submit"
+              class="btn btn-primary">
+              DELETE RESIDENT
+            </button>
+            <a
+              href="/resident/view"
+              class="btn btn-primary"
+              >View Residents</a
+            >
+            <a
+              href="/resident/add"
+              class="btn btn-primary"
+              >Add Residents</a
+            >
+            <a
+              href="/resident/update"
+              class="btn btn-primary"
+              >Update Residents</a
+            >
+          </div>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>

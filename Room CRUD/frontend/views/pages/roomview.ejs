@@ -1,0 +1,57 @@
+<!--Temiloluwa Olufore 1970625-->
+<%- include('../partials/head')-%>
+
+<html>
+  <head>
+    <title>Room View</title>
+  </head>
+  <body>
+    <%- include('../partials/header')-%>
+    <h3 class="h3tablez">VIEW ROOMS</h3>
+    <div class="tableviewing">
+      <main>
+        <div class="table-container">
+          <div class="buttonnav">
+            <a
+              href="/room/add"
+              class="btn btn-primary"
+              >Add Room</a
+            >
+            <a
+              href="/room/update"
+              class="btn btn-primary"
+              >Update Room</a
+            >
+            <a
+              href="/room/delete"
+              class="btn btn-primary"
+              >Delete Room</a
+            >
+          </div>
+
+          <div class="table-responsive-md">
+            <table class="get-started-table">
+              <thead>
+                <tr>
+                  <th>Room Number</th>
+                  <th>Room Level</th>
+                  <th>Room Capacity</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% const sortedRoomdata = roomdata.sort((a, b) => a.number -
+                b.number); %> <% sortedRoomdata.forEach(room => { %>
+                <tr>
+                  <td><%= room.number %></td>
+                  <td><%= room.floor %></td>
+                  <td><%= room.capacity %></td>
+                </tr>
+                <% }); %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

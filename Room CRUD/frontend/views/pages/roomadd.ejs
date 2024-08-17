@@ -1,0 +1,92 @@
+<!-- Temiloluwa Olufore 1970625 -->
+<%- include('../partials/head')-%>
+
+<html>
+  <head>
+    <title>Add Floor</title>
+  </head>
+  <body>
+    <%- include('../partials/header')-%>
+    <main>
+      <h3 class="h3tablez">ADD ROOM</h3>
+      <div class="page-view">
+        <form
+          action="/room/add"
+          method="post"
+          class="add-form">
+          <div class="mb-3">
+            <label
+              for="number"
+              class="form-label"
+              >New Room Number:</label
+            >
+            <input
+              type="number"
+              class="form-control"
+              name="number"
+              required />
+          </div>
+
+          <div class="mb-3">
+            <label
+              for="floor"
+              class="form-label"
+              >Room Level:</label
+            >
+            <select
+              class="form-select"
+              id="floor"
+              name="floor"
+              required>
+              <option
+                value=""
+                disabled
+                selected></option>
+              <% const sortedFloordata = floordata.sort((a, b) => a.level -
+              b.level); %> <% sortedFloordata.forEach(floor => { %>
+              <option value="<%= parseInt(floor.level) %>">
+                <p>Level <%= floor.level %>: <%= floor.name %></p>
+              </option>
+              <% }); %>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label
+              for="capacity"
+              class="form-label"
+              >Capacity:</label
+            >
+            <input
+              type="number"
+              class="form-control"
+              name="capacity"
+              required />
+          </div>
+          <div class="button-container">
+            <button
+              type="submit"
+              class="btn btn-primary">
+              ADD ROOM
+            </button>
+            <a
+              href="/room/view"
+              class="btn btn-primary"
+              >View Rooms</a
+            >
+            <a
+              href="/room/update"
+              class="btn btn-primary"
+              >Update Rooms</a
+            >
+            <a
+              href="/room/delete"
+              class="btn btn-primary"
+              >Delete Rooms</a
+            >
+          </div>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>

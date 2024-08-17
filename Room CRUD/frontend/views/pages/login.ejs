@@ -1,0 +1,73 @@
+<!-- Temiloluwa Olufore 1970625 -->
+<%- include('../partials/head')-%>
+
+<head>
+  <title>Login</title>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a
+          class="navbar-brand"
+          href="#"
+          ><img
+            src="/img/favicon-32x32.png"
+            alt="Logo"
+            height="32"
+            width="32"
+        /></a>
+        <div
+          class="collapse navbar-collapse"
+          id="navbarNav"></div>
+      </div>
+    </nav>
+  </header>
+  <div class="login-container">
+    <div class="col-md-12 mb-4">
+      <div class="login-form">
+        <h5>Lone Star Senior Facility</h5>
+        <form
+          action="/login"
+          method="POST">
+          <div class="form-outline mb-4">
+            <input
+              type="text"
+              id="username"
+              name="username"
+              class="form-control"
+              style="background-color: rgb(0, 0, 0)"
+              required />
+            <label
+              class="form-label"
+              for="form1Example1"
+              >Username</label
+            >
+          </div>
+          <div class="form-outline mb-4">
+            <input
+              type="password"
+              name="password"
+              id="password"
+              class="form-control"
+              style="background-color: rgb(0, 0, 0)"
+              required />
+            <label
+              class="form-label"
+              for="form1Example2"
+              >Password</label
+            >
+          </div>
+          <div class="loginbtn">
+            <button
+              type="submit"
+              class="btn btn-primary btn-block">
+              LOGIN
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>

@@ -1,0 +1,372 @@
+/* Temiloluwa Olufore 1970625 */
+
+body {
+  background: linear-gradient(
+    -45deg,
+    rgba(141, 2, 255, 0.363),
+    rgba(7, 42, 199, 0.363),
+    rgba(99, 5, 207, 0.363)
+  );
+  background-size: 400% 400%;
+  animation: gradient 30s ease infinite;
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: 600;
+  margin: 0;
+
+  box-sizing: border-box;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.container-fluid {
+  box-sizing: border-box;
+  overflow: hidden;
+  width: 100%;
+}
+
+.navbar.navbar-expand-lg.bg-body-tertiary {
+  border-radius: 5px;
+  border: 1px solid rgba(56, 11, 108, 0.648) !important;
+  padding: 15px;
+  width: 100%;
+  background-color: #2f075e3b !important;
+}
+
+.nav-link {
+  color: #ff002b;
+  font-family: "Libre Franklin", sans-serif;
+  background-color: transparent;
+  transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  background-color: rgba(56, 3, 113, 0.648);
+  border-radius: 10px;
+  border: 1px solid #ff0000;
+  box-shadow: 0 0 2px #460299;
+  color: #ff0000;
+}
+
+.login-container {
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+  background: linear-gradient(
+    to left,
+    rgba(7, 42, 199, 0.363),
+    rgba(99, 5, 207, 0.363)
+  );
+}
+
+.login-container {
+  display: flex;
+  box-shadow: 0 0 20px #ff002b;
+  padding: 50px;
+  max-width: 100%;
+  border-radius: 20px;
+}
+
+.login-form {
+  background-color: rgba(78, 34, 136, 0.541);
+  box-shadow: 0 0 10px rgba(235, 9, 9, 0.1);
+  padding: 30px;
+  justify-content: center;
+  border-radius: 20px;
+}
+
+.login-form h5 {
+  font-family: "Roboto Condensed", sans-serif;
+  color: rgba(255, 255, 255, 0.842);
+  text-align: center;
+}
+
+.loginbtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-primary {
+  background: linear-gradient(
+    to left,
+    rgba(33, 7, 199, 0.7),
+    rgba(42, 1, 89, 0.7)
+  );
+  color: rgba(255, 255, 255, 0.842);
+  border-color: rgba(255, 255, 255, 0.363);
+  font-family: "Roboto Condensed", sans-serif;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(
+    to left,
+    rgba(7, 42, 199, 0.363),
+    rgba(99, 5, 207, 0.363)
+  );
+  border-color: rgba(230, 10, 10, 0.5);
+}
+
+.btn-primary:active {
+  background: rgba(230, 10, 10, 0.5) !important;
+  border-color: rgba(99, 5, 207, 0.5) !important;
+}
+
+.buttonnav,
+.buttonnav a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.titleforlogin {
+  text-align: center;
+  margin-bottom: 600px;
+}
+
+.row {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+}
+
+.form-label {
+  color: rgba(255, 255, 255, 0.842);
+  font-family: "Roboto Condensed", sans-serif;
+}
+
+.form-control {
+  font-family: "Roboto Condensed", sans-serif;
+  background-color: rgba(92, 4, 235, 0.507);
+  height: auto;
+}
+
+.form-select {
+  font-family: "Roboto Condensed", sans-serif;
+  background-color: rgba(92, 4, 235, 0.507);
+}
+
+.homepage {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  height: 100vh;
+}
+
+.crudmain {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-column-gap: 0;
+  margin-top: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  height: 100vh;
+}
+
+.tableviewing {
+  margin-top: 2rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  height: 100vh;
+}
+
+.left-side,
+.right-side {
+  justify-content: space-between;
+}
+
+.rh {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  border-radius: 20px;
+  max-height: 60%;
+  margin-top: 2rem;
+  margin-left: 2rem;
+  border: 2px solid #ff002b;
+}
+
+.titlehd {
+  padding: 20px;
+  text-align: center;
+  color: #ff002b;
+  background-color: rgba(58, 8, 114, 0.363);
+  font-family: "Libre Franklin", sans-serif;
+}
+
+h1.titlehd {
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: 300;
+}
+
+figcaption {
+  text-align: center;
+  color: white;
+}
+
+.con {
+  color: white;
+  margin-left: 2rem;
+  margin-top: 2rem;
+  margin-right: 2rem;
+  box-shadow: #ff002b;
+  box-shadow: 0 0 2px #ff002b;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.get-started-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.get-started-table th,
+.get-started-table td {
+  border: 1px solid rgba(109, 3, 248, 0.252);
+  padding: 8px;
+  text-align: center;
+  border-radius: 20px;
+  color: #ffffff;
+  border-radius: 10px;
+}
+
+.get-started-table th {
+  background-color: rgba(99, 5, 207, 0.363);
+  color: #ff0000 !important;
+}
+
+.table-responsive-md {
+  position: relative;
+  width: 70%;
+  margin: 20px auto;
+  overflow-x: auto;
+  max-height: 500px;
+}
+
+.table-container {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 90px;
+  background: linear-gradient(
+    to left,
+    rgba(80, 4, 156, 0.363),
+    rgba(3, 14, 87, 0.363)
+  );
+}
+
+.get-started-table tbody {
+  background-color: rgba(99, 5, 207, 0.1);
+}
+
+.get-started-table tbody tr:hover {
+  background-color: rgba(99, 5, 207, 0.2);
+}
+
+.carico {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card {
+  background-color: #2f075e3b;
+  text-align: center;
+  padding: 20px;
+  border-radius: 20px;
+  border: 1px solid #99021b;
+  box-shadow: 0 0 40px rgba(92, 4, 235, 0.507);
+  margin: auto;
+  max-width: 100%;
+  width: 100%;
+  max-width: 400px;
+  height: 350px;
+}
+
+.api_call {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2rem;
+  height: 100%;
+}
+
+.h3tablez {
+  margin-top: 2rem;
+  text-align: center;
+  color: #ff002b;
+}
+
+.add-form {
+  margin: auto;
+  margin-top: 20px;
+  background-color: #2f075e3b;
+  padding: 20px;
+  border-radius: 20px;
+  border: 1px solid #99021b;
+  box-shadow: 0 0 40px rgba(92, 4, 235, 0.507);
+  max-width: 100%;
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+}
+
+.page-view {
+  display: flex;
+  margin-top: 2rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  height: 100vh;
+}
+
+.split2fr {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.singleint {
+  margin: auto;
+  margin-top: 20px;
+  background-color: #2f075e3b;
+  padding: 20px;
+  border-radius: 20px;
+  border: 1px solid #99021b;
+  box-shadow: 0 0 40px rgba(92, 4, 235, 0.507);
+  max-width: 100%;
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+}
+
+.emsg {
+  text-align: center;
+}
+
+.button-container a {
+  margin-left: 9px;
+  background-color: #000000 !important;
+  background: #460299 !important;
+}
+
+.row {
+  margin: 0;
+}
+
+option {
+  color: rgb(255, 255, 255);
+  background-color: rgb(38, 0, 134);
+}

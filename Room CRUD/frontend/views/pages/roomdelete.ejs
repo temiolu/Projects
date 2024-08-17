@@ -1,0 +1,72 @@
+<!-- Temiloluwa Olufore 1970625 -->
+<%- include('../partials/head')-%>
+
+<html>
+  <head>
+    <title>Delete Room</title>
+  </head>
+  <body>
+    <%- include('../partials/header')-%>
+    <main>
+      <h3 class="h3tablez">DELETE ROOM</h3>
+      <div class="page-view">
+        <form
+          id="deleteRoom"
+          class="singleint"
+          method="POST"
+          action="/api/room/<%= parseInt(number) %>?_method=DELETE"
+          style="max-width: 45% !important">
+          <input
+            type="hidden"
+            name="_method"
+            value="DELETE" />
+          <div class="mb-3">
+            <label
+              for="number"
+              class="form-label"
+              >Room Number to Delete:</label
+            >
+            <select
+              class="form-select"
+              id="number"
+              name="number"
+              required>
+              <option
+                value=""
+                disabled
+                selected></option>
+              <% const sortedRoomdata = roomdata.sort((a, b) => a.number -
+              b.number); %> <% sortedRoomdata.forEach(room => { %>
+              <option value="<%= (room.number) %>">
+                Room <%= room.number %>
+              </option>
+              <% }); %>
+            </select>
+          </div>
+          <div class="button-container">
+            <button
+              type="submit"
+              class="btn btn-primary">
+              DELETE ROOM
+            </button>
+            <a
+              href="/room/view"
+              class="btn btn-primary"
+              >View Rooms</a
+            >
+            <a
+              href="/room/add"
+              class="btn btn-primary"
+              >Add Rooms</a
+            >
+            <a
+              href="/room/update"
+              class="btn btn-primary"
+              >Update Rooms</a
+            >
+          </div>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>

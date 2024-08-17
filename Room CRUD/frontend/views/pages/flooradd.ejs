@@ -1,0 +1,67 @@
+<!-- Temiloluwa Olufore 1970625 -->
+<%- include('../partials/head')-%>
+
+<html>
+  <head>
+    <title>Add Floor</title>
+  </head>
+  <body>
+    <%- include('../partials/header')-%>
+    <main>
+      <h3 class="h3tablez">ADD FLOOR</h3>
+      <div class="page-view">
+        <form
+          action="/floor/add"
+          method="post"
+          class="add-form">
+          <div class="mb-3">
+            <label
+              for="level"
+              class="form-label"
+              >New Level:</label
+            >
+            <input
+              type="number"
+              class="form-control"
+              name="level"
+              required />
+          </div>
+          <div class="mb-3">
+            <label
+              for="name"
+              class="form-label"
+              >New Floor Name:</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              name="name"
+              required />
+          </div>
+          <div class="button-container">
+            <button
+              type="submit"
+              class="btn btn-primary">
+              ADD FLOOR
+            </button>
+            <a
+              href="/floor/view"
+              class="btn btn-primary"
+              >View Floors</a
+            >
+            <a
+              href="/floor/update"
+              class="btn btn-primary"
+              >Update Floors</a
+            >
+            <a
+              href="/floor/delete"
+              class="btn btn-primary"
+              >Delete Floors</a
+            >
+          </div>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>
