@@ -1,0 +1,101 @@
+<%- include('../partials/head') %>
+
+<head>
+  <title>EEETrading LLC</title>
+  <style>
+    body {
+      background-color: #e5e5e5 !important;
+    }
+
+    .main-content {
+      background-color: transparent !important;
+    }
+
+    footer {
+      background-color: #e5e5e5 !important;
+    }
+
+    .text-red {
+      color: red !important;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      background-color: #007bff;
+      border: none;
+    }
+
+    .btn-primary:hover,
+    .btn-secondary:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+
+<body
+  class="d-flex flex-column text-white"
+  style="min-height: 100vh">
+  <header>
+    <nav class="navbar navbar-dark bg-primary">
+      <a
+        href="#"
+        class="mx-auto">
+        <img
+          src="/img/EEELogo.png"
+          alt="EEETrading Logo"
+          height="60"
+          width=""
+          style="padding: 1px" />
+      </a>
+    </nav>
+  </header>
+
+  <div
+    class="main-content flex-grow-1 d-flex justify-content-center align-items-center">
+    <div class="container text-center">
+      <h1 class="text-red">Welcome to EEETrading LLC</h1>
+      <p class="lead mb-4 text-red">
+        EEETrading LLC is based in Cypress, Texas, and we specialize in a wide
+        range of high-quality automotive parts, accessories, and hookah
+        supplies. Whether you're a car enthusiast or looking for the best in
+        hookah gear, we have what you need.
+      </p>
+      <p class="lead mb-4 text-red">
+        Our collection includes everything from essential car parts to premium
+        hookah accessories. We are committed to providing our customers with
+        excellent products at unbeatable prices, with fast and reliable service.
+      </p>
+      <p class="lead mb-4 text-red">
+        Ready to get started? Sign up or log in today to explore our full range
+        of products and enjoy exclusive offers!
+      </p>
+      <div class="d-flex justify-content-center">
+        <a
+          href="/login"
+          class="btn btn-outline-danger btn-lg me-3"
+          style="font-weight: bold"
+          >Login</a
+        >
+        <a
+          href="/register"
+          class="btn btn-outline-dark btn-lg"
+          style="font-weight: bold"
+          >Register</a
+        >
+      </div>
+    </div>
+  </div>
+  <footer class="text-center text-lg-start border-top mt-5">
+    <div
+      class="container-fluid px-5 d-flex flex-column flex-md-row justify-content-between align-items-center py-3">
+      <p class="mb-2 mb-md-0 text-muted">
+        © 2024 EEETrading LLC, all rights reserved
+      </p>
+
+      <a
+        href="/"
+        class="mb-3 mb-md-0 d-flex align-items-center link-dark text-decoration-none">
+      </a>
+    </div>
+  </footer>
+</body>

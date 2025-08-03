@@ -1,0 +1,76 @@
+<%- include('../partials/head') %>
+<html>
+  <head>
+    <title>Users</title>
+  </head>
+  <%- include('../partials/sidebar') %>
+  <body>
+    <div class="main-content-admin">
+      <div class="inventory-table">
+        <h5 style="padding: 0.5rem">Users</h5>
+        <div class="search">
+          <input
+            type="text"
+            id="searchInput"
+            onkeyup="searchTable()"
+            placeholder="Search for User..."
+            class="form-control mb-3" />
+        </div>
+        <div class="table-responsive-md">
+          <table
+            class="table sortable invoiceT"
+            id="invoiceTable">
+            <thead>
+              <tr>
+                <th>
+                  User ID
+                  <i
+                    class="bi bi-sort-up"
+                    aria-hidden="true"></i>
+                </th>
+                <th>
+                  Email
+                  <i
+                    class="bi bi-sort-up"
+                    aria-hidden="true"></i>
+                </th>
+
+                <th>
+                  Role
+                  <i
+                    class="bi bi-sort-up"
+                    aria-hidden="true"></i>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <% const sortedUsers = userData.sort((a, b) => a.level - b.level);
+              %> <% sortedUsers.forEach(user => { %>
+              <tr>
+                <td><%= user.id %></td>
+                <td><%= user.email %></td>
+                <td><%= user.role %></td>
+              </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    function searchTable() {
+      let input = document.getElementById("searchInput").value.toLowerCase();
+      let tr = document
+        .getElementById("invoiceTable")
+        .getElementsByTagName("tr");
+      for (let i = 1; i < tr.length; i++) {
+        tr[i].style.display = Array.from(tr[i].getElementsByTagName("td")).some(
+          (td) => td.textContent.toLowerCase().includes(input)
+        )
+          ? ""
+          : "none";
+      }
+    }
+  </script>
+</html>

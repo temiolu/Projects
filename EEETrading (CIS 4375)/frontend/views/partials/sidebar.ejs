@@ -1,0 +1,144 @@
+<div class="headerdiv">
+  <nav class="navbar navbar-dark bg-primary">
+    <a href="/home">
+      <img
+        src="/img/EEELogo.png"
+        alt="EEETrading Logo"
+        height="60"
+        width=""
+        style="padding: 1px" />
+    </a>
+    <div class="account">
+      <div class="icon-container dropdown">
+        <i
+          class="bi bi-person-circle"
+          style="font-size: 40px; color: rgb(255, 255, 255); cursor: pointer"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"></i>
+        <span class="logged-in"></span>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li>
+            <span class="dropdown-item disabled">Hi, <%= userEmail %>!</span>
+          </li>
+          <div class="dropdown-divider"></div>
+          <% if (role === "admin") { %>
+          <li>
+            <a
+              class="dropdown-item"
+              href="/admin/invoices"
+              >Invoices</a
+            >
+          </li>
+          <div class="dropdown-divider"></div>
+          <li>
+            <a
+              class="dropdown-item"
+              href="/admin/inventory"
+              >Inventory</a
+            >
+          </li>
+          <div class="dropdown-divider"></div>
+          <li>
+            <a
+              class="dropdown-item"
+              href="/admin/users/">
+              Users
+            </a>
+          </li>
+          <% } %>
+          <div class="dropdown-divider"></div>
+          <li>
+            <a
+              class="dropdown-item text-danger"
+              href="/logout">
+              Logout</a
+            >
+          </li>
+        </ul>
+      </div>
+      <% if (role === "admin") { %>
+      <span>(<%= role %>)</span>
+      <% } %>
+    </div>
+  </nav>
+</div>
+<aside class="sidebar">
+  <nav class="sidebar-nav">
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a
+          class="nav-link collapsed"
+          data-bs-toggle="collapse"
+          href="#inventoryMenu"
+          role="button"
+          aria-expanded="false"
+          aria-controls="inventoryMenu">
+          <i class="fas fa-boxes"></i> Inventory
+        </a>
+        <div
+          class="collapse"
+          id="inventoryMenu">
+          <ul class="nav flex-column ms-3">
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="/admin/inventory">
+                <i class="fas fa-tasks"></i> View Inventory
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a
+          class="nav-link collapsed"
+          data-bs-toggle="collapse"
+          href="#invoiceMenu"
+          role="button"
+          aria-expanded="false"
+          aria-controls="invoiceMenu">
+          <i class="fas fa-file-invoice"></i> Invoices
+        </a>
+        <div
+          class="collapse"
+          id="invoiceMenu">
+          <ul class="nav flex-column ms-3">
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="/admin/invoices">
+                <i class="fas fa-tasks"></i> Manage Invoices
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a
+          class="nav-link collapsed"
+          data-bs-toggle="collapse"
+          href="#userMenu"
+          role="button"
+          aria-expanded="false"
+          aria-controls="userMenu">
+          <i class="fas fa-users"></i> Users
+        </a>
+        <div
+          class="collapse"
+          id="userMenu">
+          <ul class="nav flex-column ms-3">
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="/admin/users/">
+                <i class="fas fa-user-cog"></i> View Users
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </nav>
+</aside>

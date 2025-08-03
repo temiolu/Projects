@@ -1,0 +1,256 @@
+<%- include('../partials/head') %> <% const sortedItems = items.sort((a, b) =>
+a.level - b.level); %>
+<html>
+  <head>
+    <title>Cart</title>
+  </head>
+  <body>
+    <%- include('../partials/header') %>
+    <div
+      id="updated"
+      class="alert alert-success"
+      style="display: none"
+      role="alert">
+      Item quantity updated!
+    </div>
+    <div class="main-content">
+      <div class="header-row">
+        <h5>
+          <a
+            href="javascript:history.back()"
+            style="text-decoration: none">
+            &larr; Back
+          </a>
+        </h5>
+      </div>
+      <div class="grid-container5">
+        <div class="grid-item cartproducts">
+          <% if (items.length === 0) { %>
+          <p>Your cart is empty.</p>
+          <% } else { %>
+          <h5 style="margin-bottom: 0.5rem">Your Cart</h5>
+          <div
+            class="grid-container3"
+            id="product-grid">
+            <% sortedItems.forEach(item => { %>
+            <div class="grid-item">
+              <div class="product">
+                <% const image = images.find(img => img.quickbooks_item_id ===
+                item.id); %> <% if (image) { %>
+                <img
+                  src="/img/<%= image.image_id %>/<%= image.image_id %>1.jpg"
+                  alt="<%= item.name %>"
+                  onError="this.onerror=null; this.src='/img/EEELogo.png';" />
+                <% } %>
+                <div class="product-details">
+                  <h5 class="product-name"><%= item.name %></h5>
+                  <p class="price">$<%= parseFloat(item.price).toFixed(2) %></p>
+                </div>
+
+                <div class="product-actions">
+                  <form
+                    action="/cart?_method=PUT"
+                    method="POST"
+                    id="updateCart"
+                    onsubmit="updateCart(event)">
+                    <input
+                      type="hidden"
+                      name="id"
+                      value="<%= item.id %>" />
+
+                    <div class="qtycon">
+                      <div class="d-flex align-items-center">
+                        <label
+                          class="qtytitle"
+                          for="product-qty"
+                          style="font-weight: bold"
+                          >Quantity:</label
+                        >
+                        <div
+                          class="qty-input"
+                          style="margin-left: 2rem">
+                          <button
+                            class="btn btn-outline-secondary qty-count qty-count--minus"
+                            data-action="minus"
+                            type="button">
+                            -
+                          </button>
+                          <input
+                            class="form-control product-qty text-center"
+                            style="font-weight: bold"
+                            type="number"
+                            name="quantity"
+                            min="1"
+                            max="100"
+                            value="<%= item.quantity %>" />
+                          <button
+                            class="btn btn-outline-secondary qty-count qty-count--add"
+                            data-action="add"
+                            type="button">
+                            +
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <button
+                      type="submit"
+                      class="btn btn-secondary"
+                      style="margin-right: 0rem !important">
+                      Update Item
+                    </button>
+                  </form>
+                  <form
+                    action="/cart"
+                    method="POST"
+                    id="deleteItem">
+                    <input
+                      type="hidden"
+                      name="id"
+                      value="<%= item.id %>" />
+                    <button
+                      type="submit"
+                      class="btn btn-icon">
+                      <i
+                        class="fa-regular fa-trash-can"
+                        style="color: #e81c27"></i>
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <% }); %>
+          </div>
+          <% } %>
+        </div>
+
+        <!-- CHECKOUT -->
+        <div class="grid-item orderinvoice">
+          <form
+            action="/cart/order"
+            method="POST"
+            class="custform"
+            id="custform">
+            <input
+              type="hidden"
+              name="items"
+              value="<%= JSON.stringify(items) %>" />
+            <div class="col">
+              <h5 style="margin-bottom: 0.8rem">CUSTOMER DETAILS</h5>
+              <hr />
+              <div
+                data-mdb-input-init
+                class="form-outline">
+                <label
+                  class="form-label"
+                  for="customer_name"
+                  >Full Name</label
+                >
+                <input
+                  type="text"
+                  id="customer_name"
+                  name="customer_name"
+                  class="form-control"
+                  required />
+              </div>
+            </div>
+            <br />
+            <div
+              data-mdb-input-init
+              class="form-outline">
+              <label
+                class="form-label"
+                for="customer_email"
+                >Email</label
+              >
+              <input
+                type="email"
+                id="customer_email"
+                name="customer_email"
+                class="form-control"
+                value="<%= userEmail %>"
+                required />
+            </div>
+            <br />
+            <div
+              data-mdb-input-init
+              class="form-outline mb-3">
+              <label
+                class="form-label"
+                for="notes"
+                >Notes</label
+              >
+              <textarea
+                class="form-control"
+                id="notes"
+                name="notes"
+                rows="6"></textarea>
+            </div>
+          </form>
+
+          <div class="cartotal">
+            <ul class="list-group list-group-flush">
+              <li
+                class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                <strong>Total amount:</strong>
+                <span class="price">
+                  $<%= sortedItems.reduce((total, item) => total + item.price *
+                  item.quantity, 0).toFixed(2) %>
+                </span>
+              </li>
+
+              <li
+                class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                <% if (items.length === 0) { %>
+                <button
+                  type="submit"
+                  class="btn btn-secondary"
+                  form="custform"
+                  disabled>
+                  Send Inquiry
+                </button>
+                <% } else { %>
+                <button
+                  type="submit"
+                  class="btn btn-secondary"
+                  form="custform">
+                  Send Inquiry
+                </button>
+                <% } %>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <%- include('../partials/footer') %>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll(".qty-count").forEach((button) => {
+          button.addEventListener("click", (event) => {
+            const qtyInput = event.target
+              .closest("form")
+              .querySelector(".product-qty");
+            let currentValue = parseInt(qtyInput.value);
+
+            if (event.target.dataset.action === "minus" && currentValue > 1) {
+              qtyInput.value = currentValue - 1;
+            } else if (
+              event.target.dataset.action === "add" &&
+              currentValue < 100
+            ) {
+              qtyInput.value = currentValue + 1;
+            }
+          });
+        });
+      });
+
+      function updateCart(event) {
+        const alertElement = document.getElementById("updated");
+        alertElement.style.display = "block";
+        setTimeout(() => {
+          alertElement.style.display = "none";
+        }, 5000);
+      }
+    </script>
+  </body>
+</html>

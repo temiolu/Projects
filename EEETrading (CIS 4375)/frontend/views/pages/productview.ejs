@@ -1,0 +1,215 @@
+<%- include('../partials/head') %>
+<html>
+  <head>
+    <% const product = productItem.item %>
+    <title><%= product.name %></title>
+  </head>
+  <body>
+    <%- include('../partials/header') %>
+    <div
+      id="alert"
+      class="alert alert-success"
+      style="display: none"
+      role="alert">
+      Item added to cart!
+    </div>
+
+    <div class="main-content">
+      <div class="header-row">
+        <h5>
+          <a
+            href="javascript:history.back()"
+            style="text-decoration: none">
+            &larr; Back
+          </a>
+        </h5>
+      </div>
+      <div class="grid-container4">
+        <div class="grid-item prodtls">
+          <div
+            id="prod-slide"
+            class="carousel slide"
+            data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active c-item">
+                <img
+                  src="/img/<%= image[0].image_id %>/<%= image[0].image_id %>1.jpg"
+                  class="d-block c-img w-100"
+                  alt="Product Image 1"
+                  onError="this.onerror=null; this.src='/img/EEELogo.png';" />
+                <div class="carousel-caption top-0 mt-4"></div>
+              </div>
+              <div class="carousel-item c-item">
+                <img
+                  src="/img/placeholder56.jpg"
+                  class="d-block w-100 c-img"
+                  alt="Product Image 2"
+                  onError="this.onerror=null; this.src='/img/EEELogo.png';" />
+                <div class="carousel-caption top-0 mt-4"></div>
+              </div>
+            </div>
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#prod-slide"
+              data-bs-slide="prev">
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#prod-slide"
+              data-bs-slide="next">
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+          <div class="row mt-3 justify-content-center">
+            <div class="col-2">
+              <button
+                type="button"
+                class="btn p-0"
+                onclick="goToSlide(0)">
+                <img
+                  src="/img/<%= image[0].image_id %>/<%= image[0].image_id %>1.jpg"
+                  class="img-thumbnail"
+                  onError="this.onerror=null; this.src='/img/EEELogo.png';" />
+              </button>
+            </div>
+            <div class="col-2">
+              <button
+                type="button"
+                class="btn p-0"
+                onclick="goToSlide(1)">
+                <img
+                  src="/img/<%= image[0].image_id %>/<%= image[0].image_id %>2.jpg"
+                  class="img-thumbnail"
+                  onError="this.onerror=null; this.src='/img/EEELogo.png';" />
+              </button>
+            </div>
+          </div>
+          <p>Product Images</p>
+        </div>
+
+        <!-- ADDING TO CART -->
+        <div class="grid-item jmac">
+          <form
+            action="/add-to-cart"
+            method="POST"
+            onsubmit="addCart(event)">
+            <h4
+              class="product-name-cart"
+              style="font-weight: bold">
+              <%= product.name %>
+            </h4>
+            <p class="product-description"><%= product.description %></p>
+            <hr />
+            <div
+              class="d-flex align-items-center"
+              style="font-weight: bold">
+              <p class="mb-0 me-2">Price:</p>
+              <p class="price">
+                $<%= parseFloat(product.unitPrice).toFixed(2) %> ea.
+              </p>
+            </div>
+            <div class="qtycon">
+              <div class="d-flex align-items-center">
+                <label
+                  for="product-qty"
+                  style="font-weight: bold"
+                  >Quantity:</label
+                >
+                <div
+                  class="qty-input"
+                  style="margin-left: 2rem">
+                  <button
+                    class="btn btn-outline-secondary qty-count qty-count--minus"
+                    data-action="minus"
+                    type="button">
+                    -
+                  </button>
+                  <input
+                    class="form-control product-qty text-center"
+                    style="font-weight: bold"
+                    type="number"
+                    name="quantity"
+                    min="1"
+                    max="100"
+                    value="1" />
+                  <button
+                    class="btn btn-outline-secondary qty-count qty-count--add"
+                    data-action="add"
+                    type="button">
+                    +
+                  </button>
+                </div>
+              </div>
+            </div>
+            <hr />
+            <input
+              type="hidden"
+              name="id"
+              value="<%= productItem.item.id %>" />
+            <input
+              type="hidden"
+              name="name"
+              value="<%= product.name %>" />
+            <input
+              type="hidden"
+              name="price"
+              value="<%= parseFloat(product.unitPrice).toFixed(2) %>" />
+
+            <div
+              id="alert"
+              class="alert alert-success alert-dismissible addcart fade show"
+              style="display: none"
+              role="alert">
+              Item added to cart!
+            </div>
+            <button
+              type="submit"
+              class="btn btn-secondary"
+              style="font-weight: bold">
+              Add To Cart
+            </button>
+          </form>
+        </div>
+      </div>
+      <%- include('../partials/footer') %>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const qtyInput = document.querySelector(".product-qty");
+        document.querySelectorAll(".qty-count").forEach((button) => {
+          button.addEventListener("click", () => {
+            let currentValue = parseInt(qtyInput.value);
+            if (button.dataset.action === "minus" && currentValue > 1) {
+              qtyInput.value = currentValue - 1;
+            } else if (button.dataset.action === "add" && currentValue < 100) {
+              qtyInput.value = currentValue + 1;
+            }
+          });
+        });
+      });
+      function goToSlide(slideIndex) {
+        const carousel = new bootstrap.Carousel(
+          document.getElementById("prod-slide")
+        );
+        carousel.to(slideIndex);
+      }
+
+      function addCart(event) {
+        const alertElement = document.getElementById("alert");
+        alertElement.style.display = "block";
+        setTimeout(() => {
+          alertElement.style.display = "none";
+        }, 5000);
+      }
+    </script>
+  </body>
+</html>

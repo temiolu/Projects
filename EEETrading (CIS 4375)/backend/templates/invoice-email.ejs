@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .invoice { padding: 20px; font-family: Arial, sans-serif; }
+        .items { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .items th, .items td { padding: 10px; border: 1px solid #ddd; }
+        .total { font-weight: bold; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="invoice">
+        <h2>Invoice #<%= invoice.id %></h2>
+        <p>Date: <%= new Date(invoice.created_at).toLocaleDateString() %></p>
+        
+        <div class="customer">
+            <h3>Bill To:</h3>
+            <p><%= customer.name %></p>
+            <p><%= customer.email %></p>
+        </div>
+
+        <table class="items">
+            <tr>
+                <th>Item</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+            <% items.forEach(item => { %>
+                <tr>
+                    <td><%= item.name %></td>
+                    <td><%= item.quantity %></td>
+                    <td>$<%= item.price.toFixed(2) %></td>
+                    <td>$<%= (item.quantity * item.price).toFixed(2) %></td>
+                </tr>
+            <% }); %>
+        </table>
+
+        <div class="total">
+            Total Amount: $<%= invoice.total_amount.toFixed(2) %>
+        </div>
+    </div>
+</body>
+</html> 

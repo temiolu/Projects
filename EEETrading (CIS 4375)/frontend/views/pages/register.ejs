@@ -1,0 +1,118 @@
+<%- include('../partials/head') %>
+<!-- Includes the shared head partial -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+  </head>
+  <body class="gradient-background">
+    <div class="login-container">
+      <h5 style="display: inline-flex; align-items: center; margin: 0">
+        <img
+          src="/img/EEELogo.png"
+          alt="EEETrading Logo"
+          height="60"
+          style="padding: 1px; margin-right: 10px" />
+        Register
+      </h5>
+      <form
+        id="registerForm"
+        method="POST">
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            class="form-control"
+            required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="form-control"
+            required />
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-control"
+            required />
+        </div>
+        <div class="form-group">
+          <label for="confirm-password">Confirm Password:</label>
+          <input
+            type="password"
+            id="confirm-password"
+            name="confirm-password"
+            class="form-control"
+            required />
+        </div>
+        <button
+          type="submit"
+          class="btn btn-primary btn-flat m-b-30 m-t-30">
+          Register
+        </button>
+      </form>
+      <p class="register-link m-t-15 text-center">
+        Already have an account?
+        <a
+          style="color: #970404e4"
+          href="/login"
+          >Login here</a
+        >
+      </p>
+    </div>
+
+    <script>
+      document
+        .getElementById("registerForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          const username = document.getElementById("username").value;
+          const email = document.getElementById("email").value;
+          const password = document.getElementById("password").value;
+          const confirmPassword =
+            document.getElementById("confirm-password").value;
+
+          if (password !== confirmPassword) {
+            alert("Passwords do not match");
+            return;
+          }
+
+          try {
+            const formData = new URLSearchParams();
+            formData.append("username", username);
+            formData.append("email", email);
+            formData.append("password", password);
+
+            const response = await fetch("/register", {
+              method: "POST",
+              headers: { "Content-Type": "application/x-www-form-urlencoded" },
+              body: formData,
+            });
+
+            if (!response.ok) throw new Error("Registration failed");
+
+            alert("Registration successful!");
+            window.location.href = "/login";
+          } catch (error) {
+            console.error("Error during registration:", error);
+            alert("An error occurred during registration. Please try again.");
+          }
+        });
+    </script>
+  </body>
+</html>

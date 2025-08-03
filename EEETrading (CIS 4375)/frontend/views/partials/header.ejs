@@ -1,0 +1,158 @@
+<header>
+  <nav class="navbar navbar-dark bg-primary">
+    <% if (!currentRoute.startsWith("/admin")) { %>
+    <a href="/home">
+      <img
+        src="/img/EEELogo.png"
+        alt="EEETrading Logo"
+        height="60"
+        width=""
+        style="padding: 1px" />
+    </a>
+    <% } %> <% if (!currentRoute.startsWith("/admin")) { %>
+    <form
+      action="/search"
+      method="GET"
+      style="display: contents">
+      <div class="input-group">
+        <input
+          type="text"
+          class="form-control form-input"
+          placeholder="Search for products..."
+          name="search" />
+        <button
+          type="submit"
+          class="btn btn-primary">
+          <i class="fa fa-search"></i>
+        </button>
+      </div>
+    </form>
+    <% } %> <% if (isLoggedIn) { %>
+    <div class="carticn">
+      <div class="account">
+        <div class="icon-container dropdown">
+          <i
+            class="bi bi-person-circle"
+            style="font-size: 40px; color: rgb(255, 255, 255); cursor: pointer"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"></i>
+          <span class="logged-in"></span>
+          <ul class="dropdown-menu dropdown-menu">
+            <li>
+              <span class="dropdown-item disabled">Hi, <%= userEmail %>!</span>
+            </li>
+            <div class="dropdown-divider"></div>
+            <% if (role === "admin") { %>
+            <li>
+              <a
+                class="dropdown-item"
+                href="/admin/invoices"
+                >Invoices</a
+              >
+            </li>
+            <div class="dropdown-divider"></div>
+            <li>
+              <a
+                class="dropdown-item"
+                href="/admin/inventory"
+                >Inventory</a
+              >
+            </li>
+            <div class="dropdown-divider"></div>
+            <li>
+              <a
+                class="dropdown-item"
+                href="/admin/users/">
+                Users
+              </a>
+            </li>
+            <% } %>
+            <div class="dropdown-divider"></div>
+            <li>
+              <a
+                class="dropdown-item text-danger"
+                href="/logout">
+                Logout</a
+              >
+            </li>
+          </ul>
+        </div>
+        <% if (role === "admin") { %>
+        <span>(<%= role %>)</span>
+        <% } %>
+      </div>
+      <% if (cartLength.length > 0) { %>
+      <div style="position: relative; display: inline-block">
+        <% if (!currentRoute.startsWith("/admin")) { %>
+        <a
+          href="/cart"
+          style="text-decoration: none">
+          <i
+            class="bi bi-cart"
+            style="color: white; font-size: 2.5rem; cursor: pointer"></i>
+        </a>
+        <span class="notification-dot"></span>
+        <% } %>
+      </div>
+
+      <% } else { %>
+      <div style="position: relative; display: inline-block">
+        <% if (!currentRoute.startsWith("/admin")) { %>
+        <a
+          href="/cart"
+          style="text-decoration: none">
+          <i
+            class="bi bi-cart"
+            style="color: white; font-size: 2.5rem; cursor: pointer"></i>
+        </a>
+        <% } %>
+      </div>
+      <% } %>
+    </div>
+    <% } else { %>
+    <div class="navlogin">
+      <a
+        href="/login"
+        class="btn btn-primary lrbtn"
+        >Login/Register</a
+      >
+    </div>
+    <% } %>
+  </nav>
+  <% if (!currentRoute.startsWith("/admin")) { %>
+  <nav class="navbar navbar-expand-lg">
+    <div class="prodcon">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/charcoal"
+            >Charcoal</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/hookahs"
+            >Hookahs</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/accessories"
+            >Accessories</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/products"
+            >All Products</a
+          >
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <% } %>
+</header>

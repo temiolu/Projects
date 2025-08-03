@@ -1,0 +1,306 @@
+const uuid = require('uuid');
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+//collection for semestersDataSchema
+const semesterDataSchema = new Schema ({
+    _id:{type: String, default: uuid.v1},
+    semesterName: {
+        type: String,
+        required: true
+    },
+    semesterStartDate:{
+        type:Date,
+        required:true
+    },
+    semesterEndDate:{
+        type:Date,
+        required:true
+    },
+    experiences:{
+        type:Array,
+        ref: 'experienceData'
+    },
+    semesterStatus:{
+        //true = active, false = inactive
+        type:Boolean,
+        required:true,
+        default:true
+    }
+}, {
+    collection: 'semesterData',
+    timestamps: true
+});
+
+//collection for experienceDataSchema
+const experienceDataSchema = new Schema ({
+    _id:{type: String, default: uuid.v1},
+    experienceCategory: {
+        type: String,
+        required: true
+    },
+    experienceName: {
+        type: String,
+        required: true
+    },
+    activities:{
+        type: Array,
+        ref: 'activityData'
+    },
+    experienceStatus:{
+        //true = active, false = inactive
+        type:Boolean,
+        required: true,
+        default: true
+    }
+}, {
+    collection: 'experienceData',
+    timestamps: true
+});
+
+//collection for activityDataSchema
+const activityDataSchema = new Schema ({
+    _id:{type: String, default: uuid.v1},
+    activityName: {
+        type: String,
+        required: true
+    },
+    activityStatus:{
+        //true = active, false = inactive
+        type:Boolean,
+        required:true,
+        default: true
+    }
+}, {
+    collection: 'activityData',
+    timestamps: true
+});
+
+//collection for goalSettingFormData
+const goalSettingFormDataSchema = new Schema ({
+    _id:{type: String, default: uuid.v1},
+    organizationID: {
+        type: Array,
+        ref: 'orgData',
+        required: true
+    },
+    userID:{
+        type: String,
+        ref: 'userData'
+    },
+    semester: {
+        type: String,
+        ref:'semesterData'
+    },
+    experienceID: {
+        type: String,
+        ref:'experienceData'
+    },
+    goalForm: {
+        communityEngagement: {
+            communityEngagementExperiences: { type: Array },
+            communityEngagementExperiencesOther: { type: String },
+            previousEngagementExperiences: { type: Array },
+            previousEngagementExperiencesOther: { type: String },
+            engagementActivitiesTools: { type: Array },
+            engagementActivitiesToolOther: { type: String },
+        },
+        researchExperience: {
+            currentResearchExperience: { type: Array },
+            currentResearchExperienceOther: { type: String },
+            previousResearchExperience: { type: Array },
+            previousResearchExperienceOther: { type: String },
+            familiarTools: { type: Array },
+            familiarToolOther: { type: String },
+            interestResearchService: { type: Array },
+            interestResearchServiceOther: { type: String },
+            leadershipOption: { type: String }
+        },
+        growthGoal: {
+            problemSolvingGoal: { type: String },
+            effectiveCommunicationGoal: { type: String },
+            teamworkGoal: { type: String },
+            culturalHumilityGoal: { type: String },
+            ethicalDecisionMakingGoal: { type: String },
+            professionalResponsibilityGoal: { type: String },
+        },
+        aspirations:{
+            aspirationOne:{type:String},
+            aspirationTwo:{type:String},
+            aspirationThree:{type:String},
+        },
+        goals:{
+            goalOne:{type:String},
+            goalTwo:{type:String},
+            goalThree:{type:String},
+            goalFour:{type:String},
+            goalFive:{type:String},
+        }
+    },
+  }, {
+    collection: 'goalSettingFormData',
+    timestamps: true
+});
+
+//collection for studentEntryFormData
+const studentEntryFormDataSchema = new Schema ({
+    _id:{type: String, default: uuid.v1},
+    organizationID: {
+        type: Array,
+        ref: 'orgData',
+        required: true
+    },
+    userID:{
+        type: String,
+        ref: 'userData'
+    },
+    studentInformation: {
+        cityOrigin:{type:String},
+        primaryLanguage:{type:String},
+        otherLanguages:{type:String,},
+        languagePreference:{type:String, required: true},
+        pronouns:{type: Array},
+        otherPronouns:{type:String,},
+        commentsByStaff:{type:String,},
+        issuesConcernsTriggers:{type:String,},
+        enrolledUHInfo: {
+            uhStatus:{type:String, required: true},
+            uhEmail:{type:String,},
+            peopleSoftID:{type:String,},
+            expectedGraduationYear:{type:String,},
+            livingOnCampus:{type:String,}, //true = living on campus, false = not living on campus
+            honorsCollegeStatus:{type:String,},
+            honorsCollegeAffiliatedStatus:{type:String,},
+            honorsCollegeAffiliatedHow:{type:String,},
+            majors:{type:Array,},
+            honorsMinors:{type:Array,},
+            otherMinors:{type:Array,}
+        },
+        hichInfo:{
+            hichStatus:{type:String,},
+            hichHistoryStatus:{type:String,},
+        },
+        communityServiceInfo:{
+            serviceStatus:{type:String, required: true},
+            serviceHistoryDesc:{type:String,},
+            serviceOrgsOutsideUH:{type:String,}
+        },
+        graduateProfessionalSchool:{
+            programGradProStatus:{type:String, required: true},
+            programGradProType:{type:Array,},
+            phDTextbox:{type:String,},
+            masterTextbox:{type:String,},
+            otherTextbox:{type:String,},
+        },
+        specializedDegCert:{
+            specializedDegCertStatus:{type:String, required: true},
+            specializedDegCertType:{type:Array,},
+            professionalDesignOther:{type:String,}
+        },
+
+    }
+}, {
+    collection: 'studentEntryFormData',
+    timestamps: true
+});
+
+//collection for exitFormData
+const exitFormDataSchema = new Schema ({
+    _id:{type: String, default: uuid.v1},
+    organizationID: {
+        type: Array,
+        ref: 'orgData',
+        required: true
+    },
+    userID:{
+        type: String,
+        ref: 'userData'
+    },
+    semester: {
+        type: String,
+        ref:'semesterData'
+    },
+    experienceID: {
+        type: String,
+        ref:'experienceData'
+    },
+    goalSettingFormID:{
+        type:String,
+        ref:'goalSettingFormData'
+    },
+    //need to make section for new input information?
+    exitForm:{
+        ///Results are "progress i made to this is x, progress i made was because of this course"
+        progressMade:{
+            aspirationOneProgressResults:"",
+            aspirationTwoProgressResults:"",
+            aspirationThreeProgressResults:"",
+            aspirationOneExperienceConnection:"",
+            aspirationTwoExperienceConnection:"",
+            aspirationThreeExperienceConnection:"",
+            goalOneProgressResults:"",
+            goalTwoProgressResults:"",
+            goalThreeProgressResults:"",
+            goalFourProgressResults:"",
+            goalFiveProgressResults:"",
+            goalOneExperienceConnection:"",
+            goalTwoExperienceConnection:"",
+            goalThreeExperienceConnection:"",
+            goalFourExperienceConnection:"",
+            goalFiveExperienceConnection:"",
+        },
+        //section to describe obstacles and how it was overcome
+        goalIssues:{
+            goals:{type:Array,},
+            issuesDescription:{type:String,},
+        },
+        //array that includes which activities contributed towards the goals
+        activitiesContribution:{
+            goalOneContributions:{type:Array,},
+            goalTwoContributions:{type:Array,},
+            goalThreeContributions:{type:Array,},
+            goalFourContributions:{type:Array,},
+            goalFiveContributions:{type:Array,},
+            noContributions:{type:Array},
+        },
+        //how experience contributed to goals, net promoter question
+        experienceContributions:{type:String,},
+        //likliehood of doing certain actions based on the experience taken
+        likelihoodOf:{
+            enrollAnotherCourse:{type:String,},
+            completeMinor:{type:String,},
+            recommendCourse:{type:String,},
+            pursueCareer:{type:String,},
+        },
+        //general growth goals and the results after experience
+        generalGrowth:{
+            problemSolving:{type:String,},
+            effectiveCommunication:{type:String,},
+            teamwork:{type:String,},
+            culturalHumility:{type:String,},
+            ethicalDecisionMaking:{type:String,},
+            professionalResponsibility:{type:String,},
+        },
+        //general open ended
+        openEnded:{
+            biggestLessons:{type:String,},
+            supportOthers:{type:String,},
+            comments:{type:String,},
+        }
+
+    }
+}, {
+    collection: 'exitFormData',
+    timestamps: true
+});
+
+// create models from mongoose schemas
+const semesterdata = mongoose.model('semesterData', semesterDataSchema);
+const experiencedata = mongoose.model('experienceData', experienceDataSchema);
+const activitydata = mongoose.model('activityData', activityDataSchema);
+const goalsettingformdata = mongoose.model('goalSettingFormData', goalSettingFormDataSchema);
+const studententryformdata = mongoose.model('studentEntryFormData', studentEntryFormDataSchema);
+const exitformdata = mongoose.model('exitFormData', exitFormDataSchema);
+// package the models in an object to export 
+module.exports = { semesterdata, experiencedata, activitydata, goalsettingformdata, studententryformdata, exitformdata }
+

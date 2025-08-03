@@ -1,0 +1,92 @@
+<%- include('../partials/head') %>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+
+    <title>Login</title>
+  </head>
+  <body class="gradient-background">
+    <div class="login-container">
+      <h5 style="display: inline-flex; align-items: center; margin: 0">
+        <img
+          src="/img/EEELogo.png"
+          alt="EEETrading Logo"
+          height="60"
+          style="padding: 1px; margin-right: 10px" />
+        EEETrading LLC
+      </h5>
+      <form
+        action="/login"
+        method="POST">
+        <div class="form-group">
+          <label>Email address</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="form-control"
+            placeholder="Email"
+            required />
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-control"
+            placeholder="Password"
+            required />
+        </div>
+        <% if (errorMessage) { %>
+        <div
+          id="alert"
+          class="alert alert-danger alert-dismissible fade show"
+          role="alert">
+          <%= errorMessage %>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"></button>
+        </div>
+        <% } %>
+        <label class="pull-right mb-3">
+          <a
+            style="color: #970404e4"
+            href="/auth/request-password-reset"
+            >Forgot your password?</a
+          >
+        </label>
+        <button
+          type="submit"
+          class="btn btn-primary btn-flat m-b-30 m-t-30">
+          Sign in
+        </button>
+        <div class="register-link m-t-15 text-center">
+          <p>
+            Don't have an account?
+            <a
+              style="color: #970404e4"
+              href="register">
+              Sign Up Here</a
+            >
+          </p>
+        </div>
+      </form>
+    </div>
+    <script>
+      const alertElement = document.getElementById("alert");
+      if (alertElement) {
+        setTimeout(() => {
+          alertElement.style.display = "none";
+        }, 3000);
+      }
+    </script>
+  </body>
+</html>

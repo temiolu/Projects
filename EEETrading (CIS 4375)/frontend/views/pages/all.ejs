@@ -1,0 +1,129 @@
+<%- include('../partials/head') %>
+
+<html>
+  <head>
+    <title>All Products</title>
+  </head>
+  <body>
+    <%- include('../partials/header') %>
+    <div class="main-content">
+      <div class="grid-container3">
+        <div class="grid-item">
+          <div class="container">
+            <div class="header">
+              <h1>All Products</h1>
+              <p>
+                Explore our extensive range of hookah essentials, including
+                premium hookahs, high-quality charcoal, and stylish accessories.
+                Whether you're a seasoned enthusiast or a newcomer, we offer
+                everything you need to elevate your smoking experience. From
+                sleek hookah designs to durable charcoals and stylish glass
+                hoses, each product is crafted with quality and performance in
+                mind.
+              </p>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div class="grid-item">
+          <div class="header-row">
+            <h5 class="back-button">
+              <a
+                href="javascript:history.back()"
+                style="text-decoration: none">
+                &larr; Back
+              </a>
+            </h5>
+            <div class="prodsort">
+              <div class="d-flex align-items-center">
+                <label
+                  for="sort"
+                  class="form-label me-2"
+                  >Sort by:</label
+                >
+                <select
+                  id="sort"
+                  class="form-select">
+                  <option value="price-asc">Price: Low to High</option>
+                  <option value="price-desc">Price: High to Low</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div
+          class="grid-container3"
+          id="product-grid">
+          <% const sortedProducts = allprod.items.sort((a, b) => a.level -
+          b.level); %> <% sortedProducts.forEach(product => { %>
+          <div
+            class="grid-item"
+            data-price="<%= parseFloat(product.unitPrice).toFixed(2) %>">
+            <div
+              class="product"
+              onclick="window.location.href='/product/<%= product.id %>'">
+              <% const image = images.find(img => img.quickbooks_item_id ===
+              product.id); %> <% if (image) { %>
+              <img
+                src="/img/<%= image.image_id %>/<%= image.image_id %>1.jpg"
+                alt="<%= product.name %>"
+                onError="this.onerror=null; this.src='/img/EEELogo.png';" />
+              <% } %>
+              <div class="product-details">
+                <h2 class="product-name"><%= product.name %></h2>
+                <p class="description"><%= product.description %></p>
+                <p class="price">
+                  $<%= parseFloat(product.unitPrice).toFixed(2) %>
+                </p>
+              </div>
+              <div class="product-actions">
+                <p
+                  class="inventory-stock"
+                  style="font-weight: bold">
+                  Status:
+                  <span
+                    class="inventory-size"
+                    style="font-weight: bold; color: <%= product.quantity > 0 ? '#28a745' : '#dc3545' %>"
+                    >
+                    <%= product.quantity > 0 ? 'In Stock' : 'Out of Stock' %>
+                  </span>
+                </p>
+                <a
+                  href="/product/<%= product.id %>"
+                  class="btn btn-secondary"
+                  >View</a
+                >
+              </div>
+            </div>
+          </div>
+          <% }); %>
+        </div>
+      </div>
+      <%- include('../partials/footer') %>
+    </div>
+    <script>
+      document.getElementById("sort").addEventListener("change", function () {
+        const gridContainer = document.getElementById("product-grid");
+        const items = Array.from(gridContainer.querySelectorAll(".grid-item"));
+
+        items.sort((a, b) => {
+          const priceA = parseFloat(a.dataset.price);
+          const priceB = parseFloat(b.dataset.price);
+          
+          console.log(`Comparing prices: ${priceA} vs ${priceB}`);
+
+          if (this.value === "price-asc") {
+            return priceA - priceB;
+          } else if (this.value === "price-desc") {
+            return priceB - priceA;
+          }
+          return 0;
+        });
+
+        gridContainer.innerHTML = "";
+        items.forEach((item) => gridContainer.appendChild(item));
+      });
+    </script>
+  </body>
+</html>

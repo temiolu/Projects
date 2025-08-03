@@ -1,0 +1,108 @@
+<%- include('../partials/head') %>
+<html>
+  <head>
+    <title>Invoices</title>
+  </head>
+  <%- include('../partials/sidebar') %>
+  <body>
+    <div class="main-content-admin">
+      <div class="inventory-table">
+        <h5 style="padding: 0.5rem">Quickbooks Invoices</h5>
+        <div class="search">
+          <input
+            type="text"
+            id="searchInput"
+            onkeyup="searchTable()"
+            placeholder="Search for Invoice..."
+            class="form-control mb-3" />
+        </div>
+        <div class="table-responsive-md">
+          <table
+            class="table sortable invoiceT"
+            id="invoiceTable">
+            <thead>
+              <tr>
+                <th>
+                  Invoice Number
+                  <i
+                    class="bi bi-sort-up"
+                    aria-hidden="true"></i>
+                </th>
+                <th>
+                  Customer Name
+                  <i
+                    class="bi bi-sort-up"
+                    aria-hidden="true"></i>
+                </th>
+                <th>
+                  Email
+                  <i
+                    class="bi bi-sort-up"
+                    aria-hidden="true"></i>
+                </th>
+                <th>
+                  Invoice Total ($)
+                  <i
+                    class="bi bi-sort-up"
+                    aria-hidden="true"></i>
+                </th>
+                <th>
+                  Status
+                  <i
+                    class="bi bi-sort-up"
+                    aria-hidden="true"></i>
+                </th>
+                <th>
+                  Date Created
+                  <i
+                    class="bi bi-sort-up"
+                    aria-hidden="true"></i>
+                </th>
+                <th>
+                  Notes
+                  <i
+                    class="bi bi-sort-up"
+                    aria-hidden="true"></i>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <% const sortedInvoices = invoiceData.data.sort((a, b) => a.level
+              - b.level); %> <% sortedInvoices.forEach(invoice => { %>
+              <tr
+                onclick="window.location.href='/admin/invoices/manage/<%= invoice.id %>'">
+                <td><%= invoice.id %></td>
+                <td><%= invoice.customer_name %></td>
+                <td><%= invoice.customer_email %></td>
+                <td><%= parseFloat(invoice.total_amount).toFixed(2) %></td>
+                <td><%= invoice.status%></td>
+                <td>
+                  <%= new Date(invoice.created_at).toLocaleDateString('en-US', {
+                  year: 'numeric', month: '2-digit', day: '2-digit' }) %>
+                </td>
+
+                <td><%= invoice.notes%></td>
+              </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    function searchTable() {
+      let input = document.getElementById("searchInput").value.toLowerCase();
+      let tr = document
+        .getElementById("invoiceTable")
+        .getElementsByTagName("tr");
+      for (let i = 1; i < tr.length; i++) {
+        tr[i].style.display = Array.from(tr[i].getElementsByTagName("td")).some(
+          (td) => td.textContent.toLowerCase().includes(input)
+        )
+          ? ""
+          : "none";
+      }
+    }
+  </script>
+</html>

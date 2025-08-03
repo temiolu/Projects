@@ -1,0 +1,185 @@
+<%- include('../partials/head') %>
+
+<html>
+  <head>
+    <title>Home</title>
+  </head>
+
+  <body>
+    <%- include('../partials/header') %>
+    <div class="main-content">
+      <div class="grid-container1">
+        <div class="grid-item">
+          <div
+            id="home-slide"
+            class="carousel slide"
+            data-bs-ride="carousel">
+            <div class="carousel-indicators">
+              <button
+                type="button"
+                data-bs-target="#home-slide"
+                data-bs-slide-to="0"
+                class="active"
+                aria-current="true"
+                aria-label="Slide 1"></button>
+              <button
+                type="button"
+                data-bs-target="#home-slide"
+                data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+              <button
+                type="button"
+                data-bs-target="#home-slide"
+                data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active c-item slide1">
+                <div class="row no-gutters">
+                  <!-- Left Side (Text) -->
+                  <div
+                    class="col-6 d-flex flex-column justify-content-center p-4">
+                    <h2 style="color: #fd0e0edc; font-weight: bold">
+                      Welcome to EEETrading LLC
+                    </h2>
+                    <p class="lead">
+                      We offer a wide range of high-quality products, including
+                      top-tier hookahs and accessories. Explore our extensive
+                      collection today and find everything you need to enhance
+                      your club experience!
+                    </p>
+                  </div>
+                  <div class="col-6 p-0">
+                    <img
+                      src="/img/EEELogo.png"
+                      class="d-block w-100 h-100 object-fit-cover"
+                      alt="Slide 1" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="carousel-item c-item">
+                <div id="map">
+                  <iframe
+                    width="100%"
+                    height="400"
+                    style="border: 2px solid #bd1818; border-radius: 10px"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    src="https://www.google.com/maps/embed/v1/search?key=<%= APIKEY %>q=12925+Cypress+North+Houston+RD+Suite+A-2,Cypress,Texas,77429"
+                    allowfullscreen
+                    alt="Slide 2">
+                  </iframe>
+                </div>
+              </div>
+
+              <div class="carousel-item c-item">
+                <img
+                  src="/img/smoke1.jpg"
+                  class="d-block c-img w-100"
+                  alt="Slide 3"
+                  style="
+                    filter: blur(5px);
+                    object-fit: cover;
+                    height: 100%;
+                  " />/>
+                <div class="carousel-caption top-0 mt-4">
+                  <h1 class="display-4 fw-bolder text-capitalize text-light">
+                    Contact Us
+                  </h1>
+                  <p class="lead text-light">
+                    Reach out to us for inquiries or support.
+                  </p>
+                  <address class="text-light">
+                    <strong>EEETrading LLC</strong><br />
+                    12925 Cypress North Houston RD Suite A-2<br />
+                    Cypress, TX 77429<br />
+                    <a
+                      href="mailto:EEETradingLLC@gmail.com"
+                      class="text-light"
+                      >EEETradingLLC@gmail.com</a
+                    ><br />
+                    <a
+                      href="tel:+1234567890"
+                      class="text-light"
+                      >(346)-302-0809</a
+                    >
+                  </address>
+                </div>
+              </div>
+            </div>
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#home-slide"
+              data-bs-slide="prev">
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#home-slide"
+              data-bs-slide="next">
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="grid-container2">
+          <div class="grid-item">
+            <div
+              class="card"
+              style="background-image: url('/img/coalscard.jpg')"
+              onclick="window.location.href='/charcoal'">
+              <h1>Coals</h1>
+              <p>Discover our charcoal offerings</p>
+              <a
+                href="#"
+                class="button"
+                >View Charcoals</a
+              >
+            </div>
+          </div>
+
+          <div class="grid-item">
+            <div
+              class="card"
+              style="background-image: url('/img/hookahcard.jpg')"
+              onclick="window.location.href='/hookahs'">
+              <h1>Hookahs</h1>
+              <p>Explore our distinct hookahs</p>
+              <a
+                href="#"
+                class="button"
+                >View Hookahs</a
+              >
+            </div>
+          </div>
+
+          <div class="grid-item">
+            <div
+              class="card"
+              style="background-image: url('/img/allprcard.jpg')"
+              onclick="window.location.href='/products'">
+              <h1>All</h1>
+              <p>Take a look at all our products in our inventory</p>
+              <a
+                href="#"
+                class="button"
+                >View All Products</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <%- include('../partials/footer') %>
+    </div>
+  </body>
+</html>

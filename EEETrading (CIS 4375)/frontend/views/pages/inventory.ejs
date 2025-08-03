@@ -1,0 +1,89 @@
+<%- include('../partials/head') %>
+<html>
+  <head>
+    <title>Inventory</title>
+  </head>
+  <%- include('../partials/sidebar') %>
+  <body>
+    <div class="main-content-admin">
+      <div class="inventory-table">
+        <h5 style="padding: 0.5rem">Live Inventory</h5>
+        <div class="search">
+          <input
+            type="text"
+            id="searchInput"
+            onkeyup="searchTable()"
+            placeholder="Search for items..."
+            class="form-control mb-3" />
+        </div>
+        <div class="table-responsive-md">
+          <table
+            class="table table-bordered sortable"
+            id="inventoryTable">
+            <thead>
+              <tr>
+                <th>
+                  Quickbooks ID
+                  <i
+                    class="bi bi-sort-up"
+                    aria-hidden="true"></i>
+                </th>
+                <th>
+                  Item Name
+                  <i
+                    class="bi bi-sort-up"
+                    aria-hidden="true"></i>
+                </th>
+                <th>
+                  Description
+                  <i
+                    class="bi bi-sort-up"
+                    aria-hidden="true"></i>
+                </th>
+                <th>
+                  Quantity
+                  <i
+                    class="bi bi-sort-up"
+                    aria-hidden="true"></i>
+                </th>
+                <th>
+                  Price
+                  <i
+                    class="bi bi-sort-up"
+                    aria-hidden="true"></i>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <% const sortedProducts = allprod.items.sort((a, b) => a.level -
+              b.level); %> <% sortedProducts.forEach(item => { %>
+              <tr data-id="<%= item.id %>">
+                <td><%= item.id %></td>
+                <td><%= item.name %></td>
+                <td><%= item.description %></td>
+                <td><%= item.quantity %></td>
+                <td>$<%= parseFloat(item.unitPrice).toFixed(2) %></td>
+              </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    function searchTable() {
+      let input = document.getElementById("searchInput").value.toLowerCase();
+      let tr = document
+        .getElementById("inventoryTable")
+        .getElementsByTagName("tr");
+      for (let i = 1; i < tr.length; i++) {
+        tr[i].style.display = Array.from(tr[i].getElementsByTagName("td")).some(
+          (td) => td.textContent.toLowerCase().includes(input)
+        )
+          ? ""
+          : "none";
+      }
+    }
+  </script>
+</html>

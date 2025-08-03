@@ -1,0 +1,31 @@
+<!--Temiloluwa Olufore 1970625-->
+<%- include('../partials/head')-%>
+
+<html>
+  <head>
+    <title>Thank You</title>
+    <script>
+      setTimeout(function () {
+        if (document.referrer) {
+          window.location = document.referrer;
+        } else {
+          window.location = "/home";
+        }
+      }, 6000);
+    </script>
+  </head>
+  <body>
+    <%- include('../partials/header')-%>
+    <div class="main-content">
+      <div class="container text-center">
+        <h5>Thank You!</h5>
+        <% if (message) { %>
+        <p><%= message %></p>
+        <% } else { %>
+        <p>Your order has been placed successfully!</p>
+        <% } %>
+      </div>
+      <%- include('../partials/footer') %>
+    </div>
+  </body>
+</html>

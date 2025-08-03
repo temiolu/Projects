@@ -1,0 +1,97 @@
+<%- include('../partials/head') %>
+<html>
+  <head>
+    <% const invoice = invoiceData.data; %>
+    <title>Manage Invoice</title>
+  </head>
+  <%- include('../partials/sidebar') %>
+  <body>
+    <div class="main-content-admin">
+      <div class="header-row">
+        <h5>
+          <a
+            href="/admin/invoices"
+            style="text-decoration: none">
+            &larr; Back
+          </a>
+        </h5>
+      </div>
+      <div
+        id="updated"
+        class="alert alert-success"
+        style="display: none"
+        role="alert">
+        Invoice Status Updated!
+      </div>
+      <div
+        class="inventory-table"
+        style="height: 350px !important">
+        <div class="table-responsive-md">
+          <div
+            class="grid-container5"
+            style="border: none !important">
+            <div class="grid-item jmac">
+              <h5>Invoice #<%= invoice.id %></h5>
+              <h5>
+                Date: <%= new
+                Date(invoice.created_at).toLocaleDateString('en-US', { year:
+                'numeric', month: '2-digit', day: '2-digit' }) %>
+              </h5>
+              <hr />
+              <h5>Customer Name: <%= invoice.customer_name %></h5>
+              <h5>Customer Email: <%= invoice.customer_email %></h5>
+              <hr />
+              <h5 style="color: red">
+                Balance: $<%= parseFloat(invoice.total_amount).toFixed(2) %>
+              </h5>
+            </div>
+            <div class="grid-item">
+              <form
+                action="/admin/invoices/manage/<%= invoice.id %>?_method=PATCH"
+                method="POST"
+                id="updateInvoice"
+                onsubmit="updateInvoice(event)">
+                <label
+                  for="status"
+                  class="form-label"
+                  >Set Status:</label
+                >
+                <select
+                  id="status"
+                  name="status"
+                  class="form-select mb-3"
+                  required>
+                  <% const availableStatuses = ['PENDING', 'PAID', 'CANCELLED'];
+                  availableStatuses.forEach((status) => { if (status !==
+                  invoice.status) { %>
+                  <option value="<%= status %>"><%= status %></option>
+                  <% } }); %>
+                  <option
+                    value="<%= invoice.status %>"
+                    selected
+                    disabled>
+                    <%= invoice.status %>
+                  </option>
+                </select>
+                <button
+                  type="submit"
+                  class="btn btn-secondary w-100">
+                  Save Changes
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function updateInvoice(event) {
+        const alertElement = document.getElementById("updated");
+        alertElement.style.display = "block";
+        setTimeout(() => {
+          alertElement.style.display = "none";
+        }, 5000);
+      }
+    </script>
+  </body>
+</html>
