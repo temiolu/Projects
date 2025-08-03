@@ -1,4 +1,4 @@
-*Coursework and Personal Projects Portfolio*
+# Coursework and Personal Projects Portfolio
 
 This repository showcases my hands-on experience in **data analysis, Python scripting, SQL, and web application development**.  
 It contains multiple projects highlighting my skills in **data cleaning, exploratory analysis, visualization, database scripting, and CRUD web apps**.
