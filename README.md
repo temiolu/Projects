@@ -1,13 +1,7 @@
-# 📊 Data Analysis & Web Projects Portfolio
+Coursework and Personal Projects Portfolio
 
 This repository showcases my hands-on experience in **data analysis, Python scripting, SQL, and web application development**.  
 It contains multiple projects highlighting my skills in **data cleaning, exploratory analysis, visualization, database scripting, and CRUD web apps**.
-
----
-
-## 🖼️ Portfolio Preview
-
-![Portfolio Screenshot](Screenshot%202025-08-02%20at%207.41.06%20PM.png)
 
 ---
 
