@@ -1,0 +1,5 @@
+drug_name,ndc11,on_hand,reorder_point,weekly_usage,expiration_date,acquisition_cost,reimbursement_rate
+Ozempic,00069513001,3,10,12,2026-06-15,920,850
+Atorvastatin 20mg,00093074201,45,30,14,2027-01-10,4,6
+Amoxicillin 500mg,00054018213,12,20,18,2026-07-01,3,2
+Eliquis,00024591402,5,15,9,2026-08-01,610,580
